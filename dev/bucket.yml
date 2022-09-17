@@ -1,6 +1,4 @@
 flows:
-  d82087cf-a484-42a4-bee6-d40e07ad49f0: {ver: 1, file: flow1.snapshot, comments: '',
-    author: anonymous, created: 1663406906675, flowName: flow1, flowDesc: ''}
   cdeae801-8e06-46e8-9c42-68b400d2aaa0:
     ver: 2
     file: flow1-new.snapshot
