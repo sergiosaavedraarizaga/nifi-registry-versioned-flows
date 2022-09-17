@@ -1,13 +1,4 @@
 flows:
-  cdeae801-8e06-46e8-9c42-68b400d2aaa0:
-    ver: 2
-    file: flow1-new.snapshot
-    comments: |
-      Delete object
-    author: anonymous
-    created: 1663430647055
-    flowName: flow1-new
-    flowDesc: ''
   d77a793e-f473-4315-8cde-b55e68fc03c9: {ver: 1, file: flow3.snapshot, comments: '',
     author: anonymous, created: 1663430874515, flowName: flow3, flowDesc: ''}
 layoutVer: 1
