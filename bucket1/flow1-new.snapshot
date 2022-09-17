@@ -3063,54 +3063,6 @@
           "type" : "org.apache.nifi.processors.standard.AttributesToJSON",
           "yieldDuration" : "1 sec"
         }, {
-          "autoTerminatedRelationships" : [ ],
-          "bulletinLevel" : "WARN",
-          "bundle" : {
-            "artifact" : "nifi-stateful-analysis-nar",
-            "group" : "org.apache.nifi",
-            "version" : "1.17.0"
-          },
-          "comments" : "",
-          "componentType" : "PROCESSOR",
-          "concurrentlySchedulableTaskCount" : 1,
-          "executionNode" : "ALL",
-          "groupIdentifier" : "1c2237fa-ee7c-3547-a74f-249eb5ed62a1",
-          "identifier" : "3b93890a-4643-3f4e-9c01-9b37df64a45f",
-          "name" : "AttributeRollingWindow",
-          "penaltyDuration" : "30 sec",
-          "position" : {
-            "x" : 516.9083333333333,
-            "y" : 191.05833333333334
-          },
-          "properties" : { },
-          "propertyDescriptors" : {
-            "Value to track" : {
-              "displayName" : "Value to track",
-              "identifiesControllerService" : false,
-              "name" : "Value to track",
-              "sensitive" : false
-            },
-            "Time window" : {
-              "displayName" : "Time window",
-              "identifiesControllerService" : false,
-              "name" : "Time window",
-              "sensitive" : false
-            },
-            "Sub-window length" : {
-              "displayName" : "Sub-window length",
-              "identifiesControllerService" : false,
-              "name" : "Sub-window length",
-              "sensitive" : false
-            }
-          },
-          "runDurationMillis" : 0,
-          "scheduledState" : "DISABLED",
-          "schedulingPeriod" : "0 sec",
-          "schedulingStrategy" : "TIMER_DRIVEN",
-          "style" : { },
-          "type" : "org.apache.nifi.processors.stateful.analysis.AttributeRollingWindow",
-          "yieldDuration" : "1 sec"
-        }, {
           "autoTerminatedRelationships" : [ "wait", "expired", "success", "failure" ],
           "bulletinLevel" : "WARN",
           "bundle" : {
