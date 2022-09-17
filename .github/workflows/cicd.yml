@@ -35,6 +35,7 @@ jobs:
           sudo apt-get install unzip
           sudo sh -c "cd /opt; wget https://archive.apache.org/dist/nifi/1.16.3/nifi-toolkit-1.16.3-bin.zip"
           sudo sh -c "cd /opt; unzip nifi-toolkit-1.16.3-bin.zip; rm -f /opt/nifi-toolkit-1.16.3-bin.zip; chmod -R 755 /opt"
+          export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
           # Get Bucket Id from source (dev bucket)
           sudo sh -c "bucketId=$(/opt/nifi-toolkit-1.16.3/bin/cli.sh registry list-buckets -u http://54.216.211.110:18080 -ot json | jq '.[] | select(.name|test("dev")).identifier'); export bucketId"
           flows=$(/opt/nifi-toolkit-1.16.3/bin/cli.sh registry list-flows -b ${bucketid} -u http://54.216.211.110:18080 -ot json | jq '.[].identifier')
