@@ -1,7 +1,7 @@
 flows:
   a1a4c724-6b7f-4f31-b18a-0e8c8888484b: {ver: 1, file: flow-msk.snapshot, comments: '',
     author: anonymous, created: 1663434839614, flowName: flow-msk, flowDesc: ''}
-  d77a793e-f473-4315-8cde-b55e68fc03c9: {ver: 1, file: flow3.snapshot, comments: '',
-    author: anonymous, created: 1663430874515, flowName: flow3, flowDesc: ''}
+  d77a793e-f473-4315-8cde-b55e68fc03c9: {ver: 2, file: flow3.snapshot, comments: '',
+    author: anonymous, created: 1663436152128, flowName: flow3, flowDesc: ''}
 layoutVer: 1
 bucketId: c0cb83d9-8272-4595-aedf-82b20d21f253
