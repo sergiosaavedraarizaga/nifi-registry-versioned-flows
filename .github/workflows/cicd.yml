@@ -36,12 +36,11 @@ jobs:
           sudo sh -c "cd /opt; wget https://archive.apache.org/dist/nifi/1.16.3/nifi-toolkit-1.16.3-bin.zip"
           sudo sh -c "cd /opt; unzip nifi-toolkit-1.16.3-bin.zip; rm -f /opt/nifi-toolkit-1.16.3-bin.zip"
           # Get Bucket Id from source (dev bucket)
-          sh -c "cd /opt/nifi-toolkit-1.16.3; bucketId=$(./bin/cli.sh registry list-buckets -u http://54.216.211.110:18080 -ot json | jq '.[] | select(.name|test("dev")).identifier'); export bucketId"
-          cd /opt/nifi-toolkit-1.16.3
+          sudo sh -c "cd /opt/nifi-toolkit-1.16.3; bucketId=$(./bin/cli.sh registry list-buckets -u http://54.216.211.110:18080 -ot json | jq '.[] | select(.name|test("dev")).identifier'); export bucketId"
           flows=$(./bin/cli.sh registry list-flows -b ${bucketid} -u http://54.216.211.110:18080 -ot json | jq '.[].identifier')
           # Get pgId using the flowId obteined in the registry
           flowId=$(echo $flows | sed 's/\"//g');
-          for flow in $flowId; do flowVersion=$(./bin/cli.sh nifi pg-list -u http://52.208.110.211:8443 -ot json | jq '.[] | select(.versionControlInformation.flowId=="'"$flow"'").versionControlInformation.version'); ./bin/cli.sh nifi pg-import -b ${bucketId} -f ${flow} -fv ${flowVersion} --registryClientId 4c2b988e-0183-1000-08cc-7bbc53445064 -u http://52.208.110.211:8443 ; done
+          sudo sh -c "cd /opt/nifi-toolkit-1.16.3; for flow in $flowId; do flowVersion=$(./bin/cli.sh nifi pg-list -u http://52.208.110.211:8443 -ot json | jq '.[] | select(.versionControlInformation.flowId=="'"$flow"'").versionControlInformation.version'); ./bin/cli.sh nifi pg-import -b ${bucketId} -f ${flow} -fv ${flowVersion} --registryClientId 4c2b988e-0183-1000-08cc-7bbc53445064 -u http://52.208.110.211:8443 ; done"
           
           
           
