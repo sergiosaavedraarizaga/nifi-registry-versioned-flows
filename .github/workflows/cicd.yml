@@ -36,7 +36,8 @@ jobs:
           sudo sh -c "cd /opt; wget https://archive.apache.org/dist/nifi/1.16.3/nifi-toolkit-1.16.3-bin.zip"
           sudo sh -c "cd /opt; unzip nifi-toolkit-1.16.3-bin.zip; rm -f /opt/nifi-toolkit-1.16.3-bin.zip"
           # Get Bucket Id from source (dev bucket)
-          sh -c "cd /opt; bucketId=$(./bin/cli.sh registry list-buckets -u http://54.216.211.110:18080 -ot json | jq '.[] | select(.name|test("dev")).identifier'); export bucketId"
+          sh -c "cd /opt/nifi-toolkit-1.16.3; bucketId=$(./bin/cli.sh registry list-buckets -u http://54.216.211.110:18080 -ot json | jq '.[] | select(.name|test("dev")).identifier'); export bucketId"
+          cd /opt/nifi-toolkit-1.16.3
           flows=$(./bin/cli.sh registry list-flows -b ${bucketid} -u http://54.216.211.110:18080 -ot json | jq '.[].identifier')
           # Get pgId using the flowId obteined in the registry
           flowId=$(echo $flows | sed 's/\"//g');
