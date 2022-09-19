@@ -1,7 +1,7 @@
 #!/usr/bin/bash -x
 
 # VARIABLES
-sourceenv=lab
+sourceenv=lab2
 targetenv=develop
 nifipath="/opt/nifi-toolkit-1.16.3"
 sourcenifi="http://52.208.110.211:8443"
