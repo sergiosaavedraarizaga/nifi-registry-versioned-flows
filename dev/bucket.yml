@@ -1,6 +1,4 @@
 flows:
-  63f08f94-d1f5-4b2c-8751-9b415515d128: {ver: 2, file: Telematics.snapshot, comments: '',
-    author: anonymous, created: 1663581654285, flowName: Telematics, flowDesc: ''}
   e6b33555-2ea0-466f-a643-73d9c811a58f: {ver: 1, file: kk.snapshot, comments: '',
     author: anonymous, created: 1663589588087, flowName: kk, flowDesc: ''}
   2c566c02-3e21-4d5f-a045-36ee6f383770: {ver: 1, file: telematics-lab.snapshot, comments: '',
