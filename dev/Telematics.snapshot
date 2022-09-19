@@ -1362,6 +1362,54 @@
           "type" : "org.apache.nifi.processors.standard.GenerateFlowFile",
           "yieldDuration" : "1 sec"
         }, {
+          "autoTerminatedRelationships" : [ ],
+          "bulletinLevel" : "WARN",
+          "bundle" : {
+            "artifact" : "nifi-stateful-analysis-nar",
+            "group" : "org.apache.nifi",
+            "version" : "1.17.0"
+          },
+          "comments" : "",
+          "componentType" : "PROCESSOR",
+          "concurrentlySchedulableTaskCount" : 1,
+          "executionNode" : "ALL",
+          "groupIdentifier" : "f4fa2be6-b6cb-3779-9347-317da0c0ec18",
+          "identifier" : "bf7a79a9-8b15-300d-8b43-c2901c4688d8",
+          "name" : "AttributeRollingWindow",
+          "penaltyDuration" : "30 sec",
+          "position" : {
+            "x" : 611.3293265848451,
+            "y" : 94.46148543013214
+          },
+          "properties" : { },
+          "propertyDescriptors" : {
+            "Value to track" : {
+              "displayName" : "Value to track",
+              "identifiesControllerService" : false,
+              "name" : "Value to track",
+              "sensitive" : false
+            },
+            "Time window" : {
+              "displayName" : "Time window",
+              "identifiesControllerService" : false,
+              "name" : "Time window",
+              "sensitive" : false
+            },
+            "Sub-window length" : {
+              "displayName" : "Sub-window length",
+              "identifiesControllerService" : false,
+              "name" : "Sub-window length",
+              "sensitive" : false
+            }
+          },
+          "runDurationMillis" : 0,
+          "scheduledState" : "ENABLED",
+          "schedulingPeriod" : "0 sec",
+          "schedulingStrategy" : "TIMER_DRIVEN",
+          "style" : { },
+          "type" : "org.apache.nifi.processors.stateful.analysis.AttributeRollingWindow",
+          "yieldDuration" : "1 sec"
+        }, {
           "autoTerminatedRelationships" : [ "failure", "unmatched" ],
           "bulletinLevel" : "WARN",
           "bundle" : {
