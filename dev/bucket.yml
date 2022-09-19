@@ -1,7 +1,0 @@
-flows:
-  b69dca8f-9aaf-4e20-9782-5569bc7596f6: {ver: 1, file: test_msk.snapshot, comments: '',
-    author: anonymous, created: 1663438479106, flowName: test_msk, flowDesc: ''}
-  76770623-fc1c-45ae-8e57-fb3439f58e49: {ver: 2, file: Telematics.snapshot, comments: '',
-    author: anonymous, created: 1663441600492, flowName: Telematics, flowDesc: ''}
-layoutVer: 1
-bucketId: c0cb83d9-8272-4595-aedf-82b20d21f253
