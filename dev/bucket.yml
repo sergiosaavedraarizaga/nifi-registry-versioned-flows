@@ -3,6 +3,8 @@ flows:
     author: anonymous, created: 1663582009684, flowName: telematics-dev, flowDesc: ''}
   63f08f94-d1f5-4b2c-8751-9b415515d128: {ver: 2, file: Telematics.snapshot, comments: '',
     author: anonymous, created: 1663581654285, flowName: Telematics, flowDesc: ''}
+  e6b33555-2ea0-466f-a643-73d9c811a58f: {ver: 1, file: kk.snapshot, comments: '',
+    author: anonymous, created: 1663589588087, flowName: kk, flowDesc: ''}
   c1d6f0a8-cdfa-4d2a-971b-33dc2d6b9980: {ver: 1, file: test_msk.snapshot, comments: '',
     author: anonymous, created: 1663581689059, flowName: test_msk, flowDesc: ''}
 layoutVer: 1
