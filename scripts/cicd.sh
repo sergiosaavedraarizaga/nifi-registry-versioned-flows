@@ -5,7 +5,7 @@ env=develop
 nifipath="/opt/nifi-toolkit-1.16.3"
 sourcenifi="http://52.208.110.211:8443"
 targetnifi="http://54.220.59.197:8443"
-sourceregistry="http://63.32.117.72:18080" # Lab Registry
+sourceregistry="http://52.49.253.213:18080" # Lab Registry
 targetregistry="http://54.171.38.213:18080" # Dev Registry
 
 
