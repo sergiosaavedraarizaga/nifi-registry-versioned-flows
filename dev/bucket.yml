@@ -1,6 +1,4 @@
 flows:
-  2c566c02-3e21-4d5f-a045-36ee6f383770: {ver: 1, file: telematics-lab.snapshot, comments: '',
-    author: anonymous, created: 1663589644576, flowName: telematics-lab, flowDesc: ''}
   c1d6f0a8-cdfa-4d2a-971b-33dc2d6b9980: {ver: 1, file: test_msk.snapshot, comments: '',
     author: anonymous, created: 1663581689059, flowName: test_msk, flowDesc: ''}
 layoutVer: 1
