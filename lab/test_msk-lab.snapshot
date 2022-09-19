@@ -15,13 +15,13 @@
           "componentType" : "CONNECTION",
           "destination" : {
             "comments" : "",
-            "groupId" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+            "groupId" : "cfb78e29-3d80-3688-a8e8-b6a486a338f8",
             "id" : "af3d0ea5-6bff-3989-9971-1a233f1d3aac",
             "name" : "PublishKafka_2_6",
             "type" : "PROCESSOR"
           },
           "flowFileExpiration" : "0 sec",
-          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "groupIdentifier" : "cfb78e29-3d80-3688-a8e8-b6a486a338f8",
           "identifier" : "5b1317d2-4dcc-3fae-abc3-dade4401d5df",
           "labelIndex" : 1,
           "loadBalanceCompression" : "DO_NOT_COMPRESS",
@@ -32,7 +32,7 @@
           "selectedRelationships" : [ "success" ],
           "source" : {
             "comments" : "",
-            "groupId" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+            "groupId" : "cfb78e29-3d80-3688-a8e8-b6a486a338f8",
             "id" : "0120ed74-dcdd-3848-a7e1-3cd107edcb4d",
             "name" : "GenerateFlowFile",
             "type" : "PROCESSOR"
@@ -61,7 +61,7 @@
             },
             "type" : "org.apache.nifi.ssl.SSLContextService"
           } ],
-          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "groupIdentifier" : "cfb78e29-3d80-3688-a8e8-b6a486a338f8",
           "identifier" : "25bd928a-af17-3618-9c17-85b89aeeb97e",
           "name" : "StandardRestrictedSSLContextService",
           "properties" : {
@@ -134,7 +134,7 @@
             },
             "type" : "org.apache.nifi.processors.aws.credentials.provider.service.AWSCredentialsProviderService"
           } ],
-          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "groupIdentifier" : "cfb78e29-3d80-3688-a8e8-b6a486a338f8",
           "identifier" : "232dbe86-3b2a-35df-9c1e-5af856a5945a",
           "name" : "AWSCredentialsProviderControllerService",
           "properties" : {
@@ -227,15 +227,15 @@
         "flowFileConcurrency" : "UNBOUNDED",
         "flowFileOutboundPolicy" : "STREAM_WHEN_AVAILABLE",
         "funnels" : [ ],
-        "identifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+        "identifier" : "cfb78e29-3d80-3688-a8e8-b6a486a338f8",
         "inputPorts" : [ ],
         "labels" : [ ],
         "name" : "test_msk-lab",
         "outputPorts" : [ ],
         "parameterContextName" : "parameter_IAM",
         "position" : {
-          "x" : -48.0,
-          "y" : -416.0
+          "x" : 472.0,
+          "y" : -440.0
         },
         "processGroups" : [ ],
         "processors" : [ {
@@ -250,7 +250,7 @@
           "componentType" : "PROCESSOR",
           "concurrentlySchedulableTaskCount" : 1,
           "executionNode" : "ALL",
-          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "groupIdentifier" : "cfb78e29-3d80-3688-a8e8-b6a486a338f8",
           "identifier" : "363807f5-5e35-3339-a6d2-50aead2ef57a",
           "name" : "ExecuteScript",
           "penaltyDuration" : "30 sec",
@@ -295,6 +295,54 @@
           "type" : "org.apache.nifi.processors.script.ExecuteScript",
           "yieldDuration" : "1 sec"
         }, {
+          "autoTerminatedRelationships" : [ ],
+          "bulletinLevel" : "WARN",
+          "bundle" : {
+            "artifact" : "nifi-stateful-analysis-nar",
+            "group" : "org.apache.nifi",
+            "version" : "1.17.0"
+          },
+          "comments" : "",
+          "componentType" : "PROCESSOR",
+          "concurrentlySchedulableTaskCount" : 1,
+          "executionNode" : "ALL",
+          "groupIdentifier" : "cfb78e29-3d80-3688-a8e8-b6a486a338f8",
+          "identifier" : "12907f39-babe-3900-8e29-3100e1f2453b",
+          "name" : "AttributeRollingWindow",
+          "penaltyDuration" : "30 sec",
+          "position" : {
+            "x" : 401.34636962890636,
+            "y" : -79.98610302734369
+          },
+          "properties" : { },
+          "propertyDescriptors" : {
+            "Value to track" : {
+              "displayName" : "Value to track",
+              "identifiesControllerService" : false,
+              "name" : "Value to track",
+              "sensitive" : false
+            },
+            "Time window" : {
+              "displayName" : "Time window",
+              "identifiesControllerService" : false,
+              "name" : "Time window",
+              "sensitive" : false
+            },
+            "Sub-window length" : {
+              "displayName" : "Sub-window length",
+              "identifiesControllerService" : false,
+              "name" : "Sub-window length",
+              "sensitive" : false
+            }
+          },
+          "runDurationMillis" : 0,
+          "scheduledState" : "ENABLED",
+          "schedulingPeriod" : "0 sec",
+          "schedulingStrategy" : "TIMER_DRIVEN",
+          "style" : { },
+          "type" : "org.apache.nifi.processors.stateful.analysis.AttributeRollingWindow",
+          "yieldDuration" : "1 sec"
+        }, {
           "autoTerminatedRelationships" : [ "success", "failure" ],
           "bulletinLevel" : "WARN",
           "bundle" : {
@@ -306,7 +354,7 @@
           "componentType" : "PROCESSOR",
           "concurrentlySchedulableTaskCount" : 1,
           "executionNode" : "ALL",
-          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "groupIdentifier" : "cfb78e29-3d80-3688-a8e8-b6a486a338f8",
           "identifier" : "af3d0ea5-6bff-3989-9971-1a233f1d3aac",
           "name" : "PublishKafka_2_6",
           "penaltyDuration" : "30 sec",
@@ -521,7 +569,7 @@
           "componentType" : "PROCESSOR",
           "concurrentlySchedulableTaskCount" : 1,
           "executionNode" : "ALL",
-          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "groupIdentifier" : "cfb78e29-3d80-3688-a8e8-b6a486a338f8",
           "identifier" : "b7b15425-fbad-3eb7-9149-e3e08d8d38d2",
           "name" : "ConsumeKinesisStream",
           "penaltyDuration" : "30 sec",
@@ -677,7 +725,7 @@
           "componentType" : "PROCESSOR",
           "concurrentlySchedulableTaskCount" : 1,
           "executionNode" : "ALL",
-          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "groupIdentifier" : "cfb78e29-3d80-3688-a8e8-b6a486a338f8",
           "identifier" : "7e883b8a-2bea-399c-ba47-54b1ff42c8ac",
           "name" : "ExecuteScript",
           "penaltyDuration" : "30 sec",
@@ -733,7 +781,7 @@
           "componentType" : "PROCESSOR",
           "concurrentlySchedulableTaskCount" : 1,
           "executionNode" : "ALL",
-          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "groupIdentifier" : "cfb78e29-3d80-3688-a8e8-b6a486a338f8",
           "identifier" : "0120ed74-dcdd-3848-a7e1-3cd107edcb4d",
           "name" : "GenerateFlowFile",
           "penaltyDuration" : "30 sec",
