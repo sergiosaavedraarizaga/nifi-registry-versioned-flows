@@ -27,6 +27,7 @@ for sourceflow in $sourceflowid
 do
         sourceflowversion=$(${nifipath}/bin/cli.sh nifi pg-list -u ${sourcenifi} -ot json | jq '.[] | select(.versionControlInformation.flowId=="'"$sourceflow"'").versionControlInformation.version')
         sourceflowname=$(${nifipath}/bin/cli.sh nifi pg-list -u ${sourcenifi} -ot json | jq '.[] | select(.versionControlInformation.flowId=="'"$sourceflow"'").name')
+        sourceflowname=$(echo $sourceflowname | sed 's/\"//g')
 
         ###################################
         # Export flows from source registry
@@ -40,10 +41,24 @@ do
 
         # Getting Target bucket Id
         targetbucketid=$(${nifipath}/bin/cli.sh registry list-buckets -u ${targetregistry} -ot json | jq '.[] | select(.name=="'"$targetenv"'").identifier')
-        # Creating a new flow at target registry. It will get the new flow id
-        newtargetflowid=$(${nifipath}/bin/cli.sh registry create-flow --flowName ${sourceflowname} -b ${targetbucketid} -u ${targetregistry})
-        # Import the flow from json file to the target nifi registry
-        targetflowversion=$(${nifipath}/bin/cli.sh registry import-flow-version -f ${newtargetflowid} --input flow.json -u ${targetregistry})
-        ${nifipath}/bin/cli.sh nifi pg-import -f ${newtargetflowid} -b ${targetbucketid} -fv ${targetflowversion} -u ${targetnifi}
+
+        ${nifipath}/bin/cli.sh registry list-flows  -b ${targetbucketid} -u ${targetregistry} -ot json | jq '.[].name' | grep -i ${sourceflowname}
+        res=$?
+
+        if [[ $res -ne 0 ]]
+                then
+                        # Creating a new flow at target registry. It will get the new flow id
+                        newtargetflowid=$(${nifipath}/bin/cli.sh registry create-flow --flowName ${sourceflowname} -b ${targetbucketid} -u ${targetregistry})
+                        # Import the flow from json file to the target nifi registry
+                        targetflowversion=$(${nifipath}/bin/cli.sh registry import-flow-version -f ${newtargetflowid} --input flow.json -u ${targetregistry})
+                        ${nifipath}/bin/cli.sh nifi pg-import -f ${newtargetflowid} -b ${targetbucketid} -fv ${targetflowversion} -u ${targetnifi}
+                else
+                        newtargetflowid=$(${nifipath}/bin/cli.sh registry list-flows  -b ${targetbucketid} -u ${targetregistry} -ot json | jq '.[] | select(.name=="'"${sourceflowname}"'").identifier')
+                        targetflowversion=$(${nifipath}/bin/cli.sh registry import-flow-version -f ${newtargetflowid} --input flow.json -u ${targetregistry})
+                        targetpgid=$(${nifipath}/bin/cli.sh nifi pg-list -ot json -u ${targetnifi} | jq '.[] | select(.name=="'"${sourceflowname}"'").id')
+                        ${nifipath}/bin/cli.sh nifi pg-change-version -pgid ${targetpgid} -fv ${targetflowversion} -u ${targetnifi}
+                        ${nifipath}/bin/cli.sh nifi pg-enable-services -pgid ${targetpgid} -u ${targetnifi}
+                        ${nifipath}/bin/cli.sh nifi pg-start -pgid ${targetpgid} -u ${targetnifi}
+        fi
 
 done
