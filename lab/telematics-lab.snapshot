@@ -3419,54 +3419,6 @@
           "autoTerminatedRelationships" : [ ],
           "bulletinLevel" : "WARN",
           "bundle" : {
-            "artifact" : "nifi-stateful-analysis-nar",
-            "group" : "org.apache.nifi",
-            "version" : "1.17.0"
-          },
-          "comments" : "",
-          "componentType" : "PROCESSOR",
-          "concurrentlySchedulableTaskCount" : 1,
-          "executionNode" : "ALL",
-          "groupIdentifier" : "203c9152-5493-3f08-bd75-b46a16c17d0d",
-          "identifier" : "f63e3ff3-4c96-3abc-842e-1edc3c79edb4",
-          "name" : "AttributeRollingWindow",
-          "penaltyDuration" : "30 sec",
-          "position" : {
-            "x" : 502.50065183637145,
-            "y" : 190.7343606633287
-          },
-          "properties" : { },
-          "propertyDescriptors" : {
-            "Value to track" : {
-              "displayName" : "Value to track",
-              "identifiesControllerService" : false,
-              "name" : "Value to track",
-              "sensitive" : false
-            },
-            "Time window" : {
-              "displayName" : "Time window",
-              "identifiesControllerService" : false,
-              "name" : "Time window",
-              "sensitive" : false
-            },
-            "Sub-window length" : {
-              "displayName" : "Sub-window length",
-              "identifiesControllerService" : false,
-              "name" : "Sub-window length",
-              "sensitive" : false
-            }
-          },
-          "runDurationMillis" : 0,
-          "scheduledState" : "ENABLED",
-          "schedulingPeriod" : "0 sec",
-          "schedulingStrategy" : "TIMER_DRIVEN",
-          "style" : { },
-          "type" : "org.apache.nifi.processors.stateful.analysis.AttributeRollingWindow",
-          "yieldDuration" : "1 sec"
-        }, {
-          "autoTerminatedRelationships" : [ ],
-          "bulletinLevel" : "WARN",
-          "bundle" : {
             "artifact" : "nifi-kafka-2-6-nar",
             "group" : "org.apache.nifi",
             "version" : "1.17.0"
