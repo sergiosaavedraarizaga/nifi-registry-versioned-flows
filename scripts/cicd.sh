@@ -8,8 +8,8 @@ sudo sh -c "cd /opt; wget https://archive.apache.org/dist/nifi/1.16.3/nifi-toolk
 sudo sh -c "cd /opt; unzip nifi-toolkit-1.16.3-bin.zip; chmod -R 755 /opt"
 export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
 # Get Bucket Id from source (dev bucket)
-bucketId=$(/opt/nifi-toolkit-1.16.3/bin/cli.sh registry list-buckets -u http://54.216.211.110:18080 -ot json | jq '.[] | select(.name|test("dev")).identifier')
-flows=$(/opt/nifi-toolkit-1.16.3/bin/cli.sh registry list-flows -b ${bucketId} -u http://54.216.211.110:18080 -ot json | jq '.[].identifier')
+bucketId=$(/opt/nifi-toolkit-1.16.3/bin/cli.sh registry list-buckets -u http://34.245.69.30:18080 -ot json | jq '.[] | select(.name|test("dev")).identifier')
+flows=$(/opt/nifi-toolkit-1.16.3/bin/cli.sh registry list-flows -b ${bucketId} -u http://34.245.69.30:18080 -ot json | jq '.[].identifier')
 # Get pgId using the flowId obteined in the registry
 flowId=$(echo $flows | sed 's/\"//g')
 for flow in $flowId
