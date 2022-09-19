@@ -1,0 +1,820 @@
+{
+  "header" : {
+    "dataModelVersion" : "3"
+  },
+  "content" : {
+    "flowSnapshot" : {
+      "externalControllerServices" : { },
+      "flowContents" : {
+        "comments" : "",
+        "componentType" : "PROCESS_GROUP",
+        "connections" : [ {
+          "backPressureDataSizeThreshold" : "1 GB",
+          "backPressureObjectThreshold" : 10000,
+          "bends" : [ ],
+          "componentType" : "CONNECTION",
+          "destination" : {
+            "comments" : "",
+            "groupId" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+            "id" : "af3d0ea5-6bff-3989-9971-1a233f1d3aac",
+            "name" : "PublishKafka_2_6",
+            "type" : "PROCESSOR"
+          },
+          "flowFileExpiration" : "0 sec",
+          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "identifier" : "5b1317d2-4dcc-3fae-abc3-dade4401d5df",
+          "labelIndex" : 1,
+          "loadBalanceCompression" : "DO_NOT_COMPRESS",
+          "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+          "name" : "",
+          "partitioningAttribute" : "",
+          "prioritizers" : [ ],
+          "selectedRelationships" : [ "success" ],
+          "source" : {
+            "comments" : "",
+            "groupId" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+            "id" : "0120ed74-dcdd-3848-a7e1-3cd107edcb4d",
+            "name" : "GenerateFlowFile",
+            "type" : "PROCESSOR"
+          },
+          "zIndex" : 0
+        } ],
+        "controllerServices" : [ {
+          "bundle" : {
+            "artifact" : "nifi-ssl-context-service-nar",
+            "group" : "org.apache.nifi",
+            "version" : "1.17.0"
+          },
+          "componentType" : "CONTROLLER_SERVICE",
+          "controllerServiceApis" : [ {
+            "bundle" : {
+              "artifact" : "nifi-standard-services-api-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.17.0"
+            },
+            "type" : "org.apache.nifi.ssl.RestrictedSSLContextService"
+          }, {
+            "bundle" : {
+              "artifact" : "nifi-standard-services-api-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.17.0"
+            },
+            "type" : "org.apache.nifi.ssl.SSLContextService"
+          } ],
+          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "identifier" : "25bd928a-af17-3618-9c17-85b89aeeb97e",
+          "name" : "StandardRestrictedSSLContextService",
+          "properties" : {
+            "SSL Protocol" : "TLS"
+          },
+          "propertyDescriptors" : {
+            "Truststore Type" : {
+              "displayName" : "Truststore Type",
+              "identifiesControllerService" : false,
+              "name" : "Truststore Type",
+              "sensitive" : false
+            },
+            "SSL Protocol" : {
+              "displayName" : "TLS Protocol",
+              "identifiesControllerService" : false,
+              "name" : "SSL Protocol",
+              "sensitive" : false
+            },
+            "Keystore Type" : {
+              "displayName" : "Keystore Type",
+              "identifiesControllerService" : false,
+              "name" : "Keystore Type",
+              "sensitive" : false
+            },
+            "Truststore Filename" : {
+              "displayName" : "Truststore Filename",
+              "identifiesControllerService" : false,
+              "name" : "Truststore Filename",
+              "sensitive" : false
+            },
+            "Keystore Password" : {
+              "displayName" : "Keystore Password",
+              "identifiesControllerService" : false,
+              "name" : "Keystore Password",
+              "sensitive" : true
+            },
+            "key-password" : {
+              "displayName" : "Key Password",
+              "identifiesControllerService" : false,
+              "name" : "key-password",
+              "sensitive" : true
+            },
+            "Truststore Password" : {
+              "displayName" : "Truststore Password",
+              "identifiesControllerService" : false,
+              "name" : "Truststore Password",
+              "sensitive" : true
+            },
+            "Keystore Filename" : {
+              "displayName" : "Keystore Filename",
+              "identifiesControllerService" : false,
+              "name" : "Keystore Filename",
+              "sensitive" : false
+            }
+          },
+          "type" : "org.apache.nifi.ssl.StandardRestrictedSSLContextService"
+        }, {
+          "bundle" : {
+            "artifact" : "nifi-aws-nar",
+            "group" : "org.apache.nifi",
+            "version" : "1.17.0"
+          },
+          "comments" : "",
+          "componentType" : "CONTROLLER_SERVICE",
+          "controllerServiceApis" : [ {
+            "bundle" : {
+              "artifact" : "nifi-aws-service-api-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.17.0"
+            },
+            "type" : "org.apache.nifi.processors.aws.credentials.provider.service.AWSCredentialsProviderService"
+          } ],
+          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "identifier" : "232dbe86-3b2a-35df-9c1e-5af856a5945a",
+          "name" : "AWSCredentialsProviderControllerService",
+          "properties" : {
+            "default-credentials" : "true",
+            "Session Time" : "3600",
+            "anonymous-credentials" : "false"
+          },
+          "propertyDescriptors" : {
+            "profile-name" : {
+              "displayName" : "Profile Name",
+              "identifiesControllerService" : false,
+              "name" : "profile-name",
+              "sensitive" : false
+            },
+            "Access Key" : {
+              "displayName" : "Access Key ID",
+              "identifiesControllerService" : false,
+              "name" : "Access Key",
+              "sensitive" : true
+            },
+            "assume-role-proxy-host" : {
+              "displayName" : "Assume Role Proxy Host",
+              "identifiesControllerService" : false,
+              "name" : "assume-role-proxy-host",
+              "sensitive" : false
+            },
+            "default-credentials" : {
+              "displayName" : "Use Default Credentials",
+              "identifiesControllerService" : false,
+              "name" : "default-credentials",
+              "sensitive" : false
+            },
+            "Session Time" : {
+              "displayName" : "Session Time",
+              "identifiesControllerService" : false,
+              "name" : "Session Time",
+              "sensitive" : false
+            },
+            "assume-role-proxy-port" : {
+              "displayName" : "Assume Role Proxy Port",
+              "identifiesControllerService" : false,
+              "name" : "assume-role-proxy-port",
+              "sensitive" : false
+            },
+            "Assume Role ARN" : {
+              "displayName" : "Assume Role ARN",
+              "identifiesControllerService" : false,
+              "name" : "Assume Role ARN",
+              "sensitive" : false
+            },
+            "Assume Role Session Name" : {
+              "displayName" : "Assume Role Session Name",
+              "identifiesControllerService" : false,
+              "name" : "Assume Role Session Name",
+              "sensitive" : false
+            },
+            "assume-role-sts-endpoint" : {
+              "displayName" : "Assume Role STS Endpoint",
+              "identifiesControllerService" : false,
+              "name" : "assume-role-sts-endpoint",
+              "sensitive" : false
+            },
+            "Secret Key" : {
+              "displayName" : "Secret Access Key",
+              "identifiesControllerService" : false,
+              "name" : "Secret Key",
+              "sensitive" : true
+            },
+            "Credentials File" : {
+              "displayName" : "Credentials File",
+              "identifiesControllerService" : false,
+              "name" : "Credentials File",
+              "sensitive" : false
+            },
+            "assume-role-external-id" : {
+              "displayName" : "Assume Role External ID",
+              "identifiesControllerService" : false,
+              "name" : "assume-role-external-id",
+              "sensitive" : false
+            },
+            "anonymous-credentials" : {
+              "displayName" : "Use Anonymous Credentials",
+              "identifiesControllerService" : false,
+              "name" : "anonymous-credentials",
+              "sensitive" : false
+            }
+          },
+          "type" : "org.apache.nifi.processors.aws.credentials.provider.service.AWSCredentialsProviderControllerService"
+        } ],
+        "flowFileConcurrency" : "UNBOUNDED",
+        "flowFileOutboundPolicy" : "STREAM_WHEN_AVAILABLE",
+        "funnels" : [ ],
+        "identifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+        "inputPorts" : [ ],
+        "labels" : [ ],
+        "name" : "test_msk",
+        "outputPorts" : [ ],
+        "parameterContextName" : "parameter_IAM",
+        "position" : {
+          "x" : -48.0,
+          "y" : -416.0
+        },
+        "processGroups" : [ ],
+        "processors" : [ {
+          "autoTerminatedRelationships" : [ ],
+          "bulletinLevel" : "WARN",
+          "bundle" : {
+            "artifact" : "nifi-scripting-nar",
+            "group" : "org.apache.nifi",
+            "version" : "1.17.0"
+          },
+          "comments" : "",
+          "componentType" : "PROCESSOR",
+          "concurrentlySchedulableTaskCount" : 1,
+          "executionNode" : "ALL",
+          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "identifier" : "363807f5-5e35-3339-a6d2-50aead2ef57a",
+          "name" : "ExecuteScript",
+          "penaltyDuration" : "30 sec",
+          "position" : {
+            "x" : 880.0,
+            "y" : -88.0
+          },
+          "properties" : {
+            "Script Engine" : "Clojure"
+          },
+          "propertyDescriptors" : {
+            "Script File" : {
+              "displayName" : "Script File",
+              "identifiesControllerService" : false,
+              "name" : "Script File",
+              "sensitive" : false
+            },
+            "Script Engine" : {
+              "displayName" : "Script Engine",
+              "identifiesControllerService" : false,
+              "name" : "Script Engine",
+              "sensitive" : false
+            },
+            "Script Body" : {
+              "displayName" : "Script Body",
+              "identifiesControllerService" : false,
+              "name" : "Script Body",
+              "sensitive" : false
+            },
+            "Module Directory" : {
+              "displayName" : "Module Directory",
+              "identifiesControllerService" : false,
+              "name" : "Module Directory",
+              "sensitive" : false
+            }
+          },
+          "runDurationMillis" : 0,
+          "scheduledState" : "ENABLED",
+          "schedulingPeriod" : "0 sec",
+          "schedulingStrategy" : "TIMER_DRIVEN",
+          "style" : { },
+          "type" : "org.apache.nifi.processors.script.ExecuteScript",
+          "yieldDuration" : "1 sec"
+        }, {
+          "autoTerminatedRelationships" : [ "success", "failure" ],
+          "bulletinLevel" : "WARN",
+          "bundle" : {
+            "artifact" : "nifi-kafka-2-6-nar",
+            "group" : "org.apache.nifi",
+            "version" : "1.17.0"
+          },
+          "comments" : "",
+          "componentType" : "PROCESSOR",
+          "concurrentlySchedulableTaskCount" : 1,
+          "executionNode" : "ALL",
+          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "identifier" : "af3d0ea5-6bff-3989-9971-1a233f1d3aac",
+          "name" : "PublishKafka_2_6",
+          "penaltyDuration" : "30 sec",
+          "position" : {
+            "x" : 384.0,
+            "y" : 312.0
+          },
+          "properties" : {
+            "compression.type" : "none",
+            "bootstrap.servers" : "boot-1y2ohzcq.c1.kafka-serverless.eu-west-1.amazonaws.com:9098",
+            "kafka-key" : "test",
+            "sasl.mechanism" : "GSSAPI",
+            "max.block.ms" : "5 sec",
+            "message-header-encoding" : "UTF-8",
+            "ack.wait.time" : "5 secs",
+            "use-transactions" : "false",
+            "acks" : "all",
+            "security.protocol" : "PLAINTEXT",
+            "max.request.size" : "1 MB",
+            "sasl.token.auth" : "false",
+            "Failure Strategy" : "Route to Failure",
+            "partitioner.class" : "org.apache.kafka.clients.producer.internals.DefaultPartitioner",
+            "topic" : "test-topic",
+            "key-attribute-encoding" : "utf-8"
+          },
+          "propertyDescriptors" : {
+            "compression.type" : {
+              "displayName" : "Compression Type",
+              "identifiesControllerService" : false,
+              "name" : "compression.type",
+              "sensitive" : false
+            },
+            "attribute-name-regex" : {
+              "displayName" : "Attributes to Send as Headers (Regex)",
+              "identifiesControllerService" : false,
+              "name" : "attribute-name-regex",
+              "sensitive" : false
+            },
+            "bootstrap.servers" : {
+              "displayName" : "Kafka Brokers",
+              "identifiesControllerService" : false,
+              "name" : "bootstrap.servers",
+              "sensitive" : false
+            },
+            "sasl.kerberos.principal" : {
+              "displayName" : "Kerberos Principal",
+              "identifiesControllerService" : false,
+              "name" : "sasl.kerberos.principal",
+              "sensitive" : false
+            },
+            "sasl.kerberos.service.name" : {
+              "displayName" : "Kerberos Service Name",
+              "identifiesControllerService" : false,
+              "name" : "sasl.kerberos.service.name",
+              "sensitive" : false
+            },
+            "kerberos-credentials-service" : {
+              "displayName" : "Kerberos Credentials Service",
+              "identifiesControllerService" : true,
+              "name" : "kerberos-credentials-service",
+              "sensitive" : false
+            },
+            "kafka-key" : {
+              "displayName" : "Kafka Key",
+              "identifiesControllerService" : false,
+              "name" : "kafka-key",
+              "sensitive" : false
+            },
+            "partition" : {
+              "displayName" : "Partition",
+              "identifiesControllerService" : false,
+              "name" : "partition",
+              "sensitive" : false
+            },
+            "sasl.mechanism" : {
+              "displayName" : "SASL Mechanism",
+              "identifiesControllerService" : false,
+              "name" : "sasl.mechanism",
+              "sensitive" : false
+            },
+            "max.block.ms" : {
+              "displayName" : "Max Metadata Wait Time",
+              "identifiesControllerService" : false,
+              "name" : "max.block.ms",
+              "sensitive" : false
+            },
+            "message-header-encoding" : {
+              "displayName" : "Message Header Encoding",
+              "identifiesControllerService" : false,
+              "name" : "message-header-encoding",
+              "sensitive" : false
+            },
+            "kerberos-user-service" : {
+              "displayName" : "Kerberos User Service",
+              "identifiesControllerService" : true,
+              "name" : "kerberos-user-service",
+              "sensitive" : false
+            },
+            "message-demarcator" : {
+              "displayName" : "Message Demarcator",
+              "identifiesControllerService" : false,
+              "name" : "message-demarcator",
+              "sensitive" : false
+            },
+            "transactional-id-prefix" : {
+              "displayName" : "Transactional Id Prefix",
+              "identifiesControllerService" : false,
+              "name" : "transactional-id-prefix",
+              "sensitive" : false
+            },
+            "ack.wait.time" : {
+              "displayName" : "Acknowledgment Wait Time",
+              "identifiesControllerService" : false,
+              "name" : "ack.wait.time",
+              "sensitive" : false
+            },
+            "sasl.username" : {
+              "displayName" : "Username",
+              "identifiesControllerService" : false,
+              "name" : "sasl.username",
+              "sensitive" : false
+            },
+            "use-transactions" : {
+              "displayName" : "Use Transactions",
+              "identifiesControllerService" : false,
+              "name" : "use-transactions",
+              "sensitive" : false
+            },
+            "acks" : {
+              "displayName" : "Delivery Guarantee",
+              "identifiesControllerService" : false,
+              "name" : "acks",
+              "sensitive" : false
+            },
+            "security.protocol" : {
+              "displayName" : "Security Protocol",
+              "identifiesControllerService" : false,
+              "name" : "security.protocol",
+              "sensitive" : false
+            },
+            "ssl.context.service" : {
+              "displayName" : "SSL Context Service",
+              "identifiesControllerService" : true,
+              "name" : "ssl.context.service",
+              "sensitive" : false
+            },
+            "max.request.size" : {
+              "displayName" : "Max Request Size",
+              "identifiesControllerService" : false,
+              "name" : "max.request.size",
+              "sensitive" : false
+            },
+            "sasl.token.auth" : {
+              "displayName" : "Token Auth",
+              "identifiesControllerService" : false,
+              "name" : "sasl.token.auth",
+              "sensitive" : false
+            },
+            "Failure Strategy" : {
+              "displayName" : "Failure Strategy",
+              "identifiesControllerService" : false,
+              "name" : "Failure Strategy",
+              "sensitive" : false
+            },
+            "partitioner.class" : {
+              "displayName" : "Partitioner class",
+              "identifiesControllerService" : false,
+              "name" : "partitioner.class",
+              "sensitive" : false
+            },
+            "sasl.kerberos.keytab" : {
+              "displayName" : "Kerberos Keytab",
+              "identifiesControllerService" : false,
+              "name" : "sasl.kerberos.keytab",
+              "sensitive" : false
+            },
+            "topic" : {
+              "displayName" : "Topic Name",
+              "identifiesControllerService" : false,
+              "name" : "topic",
+              "sensitive" : false
+            },
+            "sasl.password" : {
+              "displayName" : "Password",
+              "identifiesControllerService" : false,
+              "name" : "sasl.password",
+              "sensitive" : true
+            },
+            "key-attribute-encoding" : {
+              "displayName" : "Key Attribute Encoding",
+              "identifiesControllerService" : false,
+              "name" : "key-attribute-encoding",
+              "sensitive" : false
+            }
+          },
+          "runDurationMillis" : 0,
+          "scheduledState" : "ENABLED",
+          "schedulingPeriod" : "0 sec",
+          "schedulingStrategy" : "TIMER_DRIVEN",
+          "style" : { },
+          "type" : "org.apache.nifi.processors.kafka.pubsub.PublishKafka_2_6",
+          "yieldDuration" : "1 sec"
+        }, {
+          "autoTerminatedRelationships" : [ ],
+          "bulletinLevel" : "WARN",
+          "bundle" : {
+            "artifact" : "nifi-aws-nar",
+            "group" : "org.apache.nifi",
+            "version" : "1.17.0"
+          },
+          "comments" : "",
+          "componentType" : "PROCESSOR",
+          "concurrentlySchedulableTaskCount" : 1,
+          "executionNode" : "ALL",
+          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "identifier" : "b7b15425-fbad-3eb7-9149-e3e08d8d38d2",
+          "name" : "ConsumeKinesisStream",
+          "penaltyDuration" : "30 sec",
+          "position" : {
+            "x" : 904.0,
+            "y" : 152.0
+          },
+          "properties" : {
+            "amazon-kinesis-stream-cloudwatch-flag" : "false",
+            "amazon-kinesis-stream-initial-position" : "LATEST",
+            "amazon-kinesis-stream-failover-timeout" : "30 secs",
+            "amazon-kinesis-stream-retry-count" : "10",
+            "AWS Credentials Provider service" : "232dbe86-3b2a-35df-9c1e-5af856a5945a",
+            "amazon-kinesis-stream-timestamp-format" : "yyyy-MM-dd HH:mm:ss",
+            "amazon-kinesis-stream-graceful-shutdown-timeout" : "20 secs",
+            "amazon-kinesis-stream-checkpoint-interval" : "3 secs",
+            "Communications Timeout" : "30 secs",
+            "Region" : "us-west-2",
+            "amazon-kinesis-stream-retry-wait" : "1 sec"
+          },
+          "propertyDescriptors" : {
+            "amazon-kinesis-stream-cloudwatch-flag" : {
+              "displayName" : "Report Metrics to CloudWatch",
+              "identifiesControllerService" : false,
+              "name" : "amazon-kinesis-stream-cloudwatch-flag",
+              "sensitive" : false
+            },
+            "kinesis-stream-name" : {
+              "displayName" : "Amazon Kinesis Stream Name",
+              "identifiesControllerService" : false,
+              "name" : "kinesis-stream-name",
+              "sensitive" : false
+            },
+            "amazon-kinesis-stream-initial-position" : {
+              "displayName" : "Initial Stream Position",
+              "identifiesControllerService" : false,
+              "name" : "amazon-kinesis-stream-initial-position",
+              "sensitive" : false
+            },
+            "amazon-kinesis-stream-record-writer" : {
+              "displayName" : "Record Writer",
+              "identifiesControllerService" : true,
+              "name" : "amazon-kinesis-stream-record-writer",
+              "sensitive" : false
+            },
+            "proxy-configuration-service" : {
+              "displayName" : "Proxy Configuration Service",
+              "identifiesControllerService" : true,
+              "name" : "proxy-configuration-service",
+              "sensitive" : false
+            },
+            "amazon-kinesis-stream-application-name" : {
+              "displayName" : "Application Name",
+              "identifiesControllerService" : false,
+              "name" : "amazon-kinesis-stream-application-name",
+              "sensitive" : false
+            },
+            "Endpoint Override URL" : {
+              "displayName" : "Endpoint Override URL",
+              "identifiesControllerService" : false,
+              "name" : "Endpoint Override URL",
+              "sensitive" : false
+            },
+            "amazon-kinesis-stream-failover-timeout" : {
+              "displayName" : "Failover Timeout",
+              "identifiesControllerService" : false,
+              "name" : "amazon-kinesis-stream-failover-timeout",
+              "sensitive" : false
+            },
+            "amazon-kinesis-stream-retry-count" : {
+              "displayName" : "Retry Count",
+              "identifiesControllerService" : false,
+              "name" : "amazon-kinesis-stream-retry-count",
+              "sensitive" : false
+            },
+            "AWS Credentials Provider service" : {
+              "displayName" : "AWS Credentials Provider Service",
+              "identifiesControllerService" : true,
+              "name" : "AWS Credentials Provider service",
+              "sensitive" : false
+            },
+            "amazon-kinesis-stream-timestamp-format" : {
+              "displayName" : "Timestamp Format",
+              "identifiesControllerService" : false,
+              "name" : "amazon-kinesis-stream-timestamp-format",
+              "sensitive" : false
+            },
+            "amazon-kinesis-stream-graceful-shutdown-timeout" : {
+              "displayName" : "Graceful Shutdown Timeout",
+              "identifiesControllerService" : false,
+              "name" : "amazon-kinesis-stream-graceful-shutdown-timeout",
+              "sensitive" : false
+            },
+            "amazon-kinesis-stream-record-reader" : {
+              "displayName" : "Record Reader",
+              "identifiesControllerService" : true,
+              "name" : "amazon-kinesis-stream-record-reader",
+              "sensitive" : false
+            },
+            "amazon-kinesis-stream-checkpoint-interval" : {
+              "displayName" : "Checkpoint Interval",
+              "identifiesControllerService" : false,
+              "name" : "amazon-kinesis-stream-checkpoint-interval",
+              "sensitive" : false
+            },
+            "amazon-kinesis-stream-dynamodb-override" : {
+              "displayName" : "DynamoDB Override",
+              "identifiesControllerService" : false,
+              "name" : "amazon-kinesis-stream-dynamodb-override",
+              "sensitive" : false
+            },
+            "Communications Timeout" : {
+              "displayName" : "Communications Timeout",
+              "identifiesControllerService" : false,
+              "name" : "Communications Timeout",
+              "sensitive" : false
+            },
+            "Region" : {
+              "displayName" : "Region",
+              "identifiesControllerService" : false,
+              "name" : "Region",
+              "sensitive" : false
+            },
+            "amazon-kinesis-stream-retry-wait" : {
+              "displayName" : "Retry Wait",
+              "identifiesControllerService" : false,
+              "name" : "amazon-kinesis-stream-retry-wait",
+              "sensitive" : false
+            },
+            "amazon-kinesis-stream-position-timestamp" : {
+              "displayName" : "Stream Position Timestamp",
+              "identifiesControllerService" : false,
+              "name" : "amazon-kinesis-stream-position-timestamp",
+              "sensitive" : false
+            }
+          },
+          "runDurationMillis" : 0,
+          "scheduledState" : "ENABLED",
+          "schedulingPeriod" : "0 sec",
+          "schedulingStrategy" : "TIMER_DRIVEN",
+          "style" : { },
+          "type" : "org.apache.nifi.processors.aws.kinesis.stream.ConsumeKinesisStream",
+          "yieldDuration" : "1 sec"
+        }, {
+          "autoTerminatedRelationships" : [ ],
+          "bulletinLevel" : "WARN",
+          "bundle" : {
+            "artifact" : "nifi-scripting-nar",
+            "group" : "org.apache.nifi",
+            "version" : "1.17.0"
+          },
+          "comments" : "",
+          "componentType" : "PROCESSOR",
+          "concurrentlySchedulableTaskCount" : 1,
+          "executionNode" : "ALL",
+          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "identifier" : "7e883b8a-2bea-399c-ba47-54b1ff42c8ac",
+          "name" : "ExecuteScript",
+          "penaltyDuration" : "30 sec",
+          "position" : {
+            "x" : 16.0,
+            "y" : 416.0
+          },
+          "properties" : {
+            "Script Engine" : "Clojure"
+          },
+          "propertyDescriptors" : {
+            "Script File" : {
+              "displayName" : "Script File",
+              "identifiesControllerService" : false,
+              "name" : "Script File",
+              "sensitive" : false
+            },
+            "Script Engine" : {
+              "displayName" : "Script Engine",
+              "identifiesControllerService" : false,
+              "name" : "Script Engine",
+              "sensitive" : false
+            },
+            "Script Body" : {
+              "displayName" : "Script Body",
+              "identifiesControllerService" : false,
+              "name" : "Script Body",
+              "sensitive" : false
+            },
+            "Module Directory" : {
+              "displayName" : "Module Directory",
+              "identifiesControllerService" : false,
+              "name" : "Module Directory",
+              "sensitive" : false
+            }
+          },
+          "runDurationMillis" : 0,
+          "scheduledState" : "ENABLED",
+          "schedulingPeriod" : "0 sec",
+          "schedulingStrategy" : "TIMER_DRIVEN",
+          "style" : { },
+          "type" : "org.apache.nifi.processors.script.ExecuteScript",
+          "yieldDuration" : "1 sec"
+        }, {
+          "autoTerminatedRelationships" : [ ],
+          "bulletinLevel" : "WARN",
+          "bundle" : {
+            "artifact" : "nifi-standard-nar",
+            "group" : "org.apache.nifi",
+            "version" : "1.17.0"
+          },
+          "comments" : "",
+          "componentType" : "PROCESSOR",
+          "concurrentlySchedulableTaskCount" : 1,
+          "executionNode" : "ALL",
+          "groupIdentifier" : "120c138c-079c-30b9-8c94-e93a2a06b7f6",
+          "identifier" : "0120ed74-dcdd-3848-a7e1-3cd107edcb4d",
+          "name" : "GenerateFlowFile",
+          "penaltyDuration" : "30 sec",
+          "position" : {
+            "x" : 376.0,
+            "y" : 48.0
+          },
+          "properties" : {
+            "character-set" : "UTF-8",
+            "File Size" : "0B",
+            "Batch Size" : "1",
+            "Unique FlowFiles" : "false",
+            "Data Format" : "Text"
+          },
+          "propertyDescriptors" : {
+            "character-set" : {
+              "displayName" : "Character Set",
+              "identifiesControllerService" : false,
+              "name" : "character-set",
+              "sensitive" : false
+            },
+            "File Size" : {
+              "displayName" : "File Size",
+              "identifiesControllerService" : false,
+              "name" : "File Size",
+              "sensitive" : false
+            },
+            "mime-type" : {
+              "displayName" : "Mime Type",
+              "identifiesControllerService" : false,
+              "name" : "mime-type",
+              "sensitive" : false
+            },
+            "generate-ff-custom-text" : {
+              "displayName" : "Custom Text",
+              "identifiesControllerService" : false,
+              "name" : "generate-ff-custom-text",
+              "sensitive" : false
+            },
+            "Batch Size" : {
+              "displayName" : "Batch Size",
+              "identifiesControllerService" : false,
+              "name" : "Batch Size",
+              "sensitive" : false
+            },
+            "Unique FlowFiles" : {
+              "displayName" : "Unique FlowFiles",
+              "identifiesControllerService" : false,
+              "name" : "Unique FlowFiles",
+              "sensitive" : false
+            },
+            "Data Format" : {
+              "displayName" : "Data Format",
+              "identifiesControllerService" : false,
+              "name" : "Data Format",
+              "sensitive" : false
+            }
+          },
+          "runDurationMillis" : 0,
+          "scheduledState" : "ENABLED",
+          "schedulingPeriod" : "0 sec",
+          "schedulingStrategy" : "TIMER_DRIVEN",
+          "style" : { },
+          "type" : "org.apache.nifi.processors.standard.GenerateFlowFile",
+          "yieldDuration" : "1 sec"
+        } ],
+        "remoteProcessGroups" : [ ],
+        "variables" : { }
+      },
+      "flowEncodingVersion" : "1.0",
+      "parameterContexts" : {
+        "parameter_IAM" : {
+          "name" : "parameter_IAM",
+          "parameters" : [ {
+            "description" : "",
+            "name" : "IAM",
+            "sensitive" : false,
+            "value" : "AWS_MSK_IAM"
+          } ]
+        }
+      }
+    }
+  }
+}
