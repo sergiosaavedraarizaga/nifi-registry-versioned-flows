@@ -45,17 +45,3 @@ do
     ${nifipath}/bin/cli.sh nifi pg-import -f ${newtargetflowid} -b ${targetbucketid} -fv ${sourceflowversion} -u ${targetnifi}
  
  done
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
