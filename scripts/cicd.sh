@@ -1,4 +1,14 @@
 !#/bin/bash
+
+# VARIABLES
+env=develop
+nifipath="/opt/nifi-toolkit-1.16.3"
+sourcenifi="http://52.208.110.211:8443"
+targetnifi="http://54.220.59.197:8443"
+sourceregistry="http://63.32.117.72:18080" # Lab Registry
+targetregistry="http://54.171.38.213:18080" # Dev Registry
+
+
 sudo apt-get update
 sudo apt-get install jq
 sudo apt-get install openjdk-11-jdk
@@ -8,12 +18,44 @@ sudo sh -c "cd /opt; wget https://archive.apache.org/dist/nifi/1.16.3/nifi-toolk
 sudo sh -c "cd /opt; unzip nifi-toolkit-1.16.3-bin.zip; chmod -R 755 /opt"
 export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
 # Get Bucket Id from source (dev bucket)
-bucketId=$(/opt/nifi-toolkit-1.16.3/bin/cli.sh registry list-buckets -u http://54.216.211.110:18080 -ot json | jq '.[] | select(.name|test("dev")).identifier')
-flows=$(/opt/nifi-toolkit-1.16.3/bin/cli.sh registry list-flows -b ${bucketId} -u http://54.216.211.110:18080 -ot json | jq '.[].identifier')
+sourcebucketid=$(${nifipath}/bin/cli.sh registry list-buckets -u ${sourceregistry} -ot json | jq '.[] | select(.name|test("'"${env}"'")).identifier')
+sourceflows=$(${nifipath}/bin/cli.sh registry list-flows -b ${sourcebucketid} -u ${sourceregistry} -ot json | jq '.[].identifier')
 # Get pgId using the flowId obteined in the registry
-flowId=$(echo $flows | sed 's/\"//g')
-for flow in $flowId
+sourceflowid=$(echo $sourceflows | sed 's/\"//g')
+for sourceflow in $sourceflowid
 do
-  flowVersion=$(/opt/nifi-toolkit-1.16.3/bin/cli.sh nifi pg-list -u http://52.208.110.211:8443 -ot json | jq '.[] | select(.versionControlInformation.flowId=="'"$flow"'").versionControlInformation.version')
-  /opt/nifi-toolkit-1.16.3/bin/cli.sh nifi pg-import -b ${bucketId} -f ${flow} -fv 1 --registryClientId 4c2b988e-0183-1000-08cc-7bbc53445064 -u http://52.208.110.211:8443
-done
+    sourceflowversion=$(${nifipath}/bin/cli.sh nifi pg-list -u ${sourcenifi} -ot json | jq '.[] | select(.versionControlInformation.flowId=="'"$sourceflow"'").versionControlInformation.version')
+
+    ###################################
+    # Export flows from source registry
+    ###################################
+    > flow.json
+    
+    ${nifipath}/bin/cli.sh registry export-flow-version -f ${sourceflow} -fv ${sourceflowversion} -o flow.json -u ${sourceregistry}
+
+    # Import flow from json file
+    # To import a flow we need to create a new flow in the target registry
+
+    # Getting Target bucket Id
+    targetbucketid=$(${nifipath}/bin/cli.sh registry list-buckets -u ${targetregistry} -ot json | jq '.[] | select(.name=="'"$env"'").identifier')
+    # Creating a new flow at target registry. It will get the new flow id
+    newtargetflowid=$(${nifipath}/bin/cli.sh registry create-flow -b ${targetbucketid} -u ${targetregistry})
+    # Import the flow from json file to the target nifi registry
+    ${nifipath}/bin/cli.sh registry import-flow-version -f ${newtargetflowid} --input flow.json -u ${targetregistry}
+    ${nifipath}/bin/cli.sh nifi pg-import -f ${newtargetflowid} -b ${targetbucketid} -fv ${sourceflowversion} -u ${targetnifi}
+ 
+ done
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
