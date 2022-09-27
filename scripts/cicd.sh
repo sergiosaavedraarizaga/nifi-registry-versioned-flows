@@ -42,7 +42,13 @@ if [[ -z ${targetnifi} ]]
  fi
  
  # Charge environment variables from vars/setup.json file
-num=$(cat ./vars/flow.json | jq length)
+num=$(cat ./flow.json | jq length)
+if [[ (-z ${num}) || (${num -eq 0) ]]
+  then
+    echo "variable num has not value or the json file is not correctly defined"
+    exit 1
+fi
+
 # If flow.json file only has 1 flow_name and 1 flow_version then it assigns values without a loop
 if [[ $num -eq 1 ]]
   then
@@ -52,8 +58,8 @@ fi
 
 sourceflowname=$flow_name
 sourceflowversion=$flow_version
-sourceflowid=$(${nifipath}/bin/cli.sh nifi pg-list -u ${sourcenifi} -ot json | jq '.[] | select(.name=="'"$flowname"'").versionControlInformation.flowId')
-sourcebucketid=$(${nifipath}/bin/cli.sh nifi pg-list -u ${sourcenifi} -ot json | jq '.[] | select(.name=="'"$flowname"'").versionControlInformation.bucketId')
+sourceflowid=$(${nifipath}/bin/cli.sh nifi pg-list -u ${sourcenifi} -ot json | jq '.[] | select(.name=="'"$sourceflowname"'").versionControlInformation.flowId')
+sourcebucketid=$(${nifipath}/bin/cli.sh nifi pg-list -u ${sourcenifi} -ot json | jq '.[] | select(.name=="'"$sourceflowname"'").versionControlInformation.bucketId')
 
 # Inport nifi flow into the target nifi instance
 ${nifipath}/bin/cli.sh nifi pg-list -u ${targetnifi} -ot json | jq '.[].name' | grep -i ${sourceflowname}
