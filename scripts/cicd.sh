@@ -33,7 +33,7 @@ case ${GITHUB_REF##*/} in
   *) echo "Error getting branch name"; exit 1 ;;
  
 # If the variable target_nifi is empty then the script finish, the one that is assigned into the .properties file
-if [[ -z ${target_nifi ]]
+if [[ -z ${targetnifi ]]
   then
     echo "target_nifi variable is not configured"
     exit 1
@@ -51,6 +51,7 @@ fi
 sourceflowname=$flow_name
 sourceflowversion=$flow_version
 sourceflowid=$(${nifipath}/bin/cli.sh nifi pg-list -u ${sourcenifi} -ot json | jq '.[] | select(.name=="'"$flowname"'").versionControlInformation.flowId')
+sourcebucketid=$(${nifipath}/bin/cli.sh nifi pg-list -u ${sourcenifi} -ot json | jq '.[] | select(.name=="'"$flowname"'").versionControlInformation.bucketId')
 
 # Inport nifi flow into the target nifi instance
 ${nifipath}/bin/cli.sh nifi pg-list -u ${targetnifi} -ot json | jq '.[].name' | grep -i ${sourceflowname}
