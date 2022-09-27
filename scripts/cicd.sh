@@ -15,9 +15,10 @@ export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
 
 # VARIABLES
 echo ${GITHUB_REF##/}
+branch=$(echo ${GITHUB_REF##/} |  awk -F"/" '{print $3}')
 # Charge .properties, it will choose a file but depends of the $env value that change and depends of the current branch. 
 # It also assign $targetenv and $targetnifi variables.
-case ${GITHUB_REF##*/} in
+case ${branch} in
   feature*)
     env=dev; echo $env
     targetenv=develop; echo $targetenv
@@ -31,9 +32,10 @@ case ${GITHUB_REF##*/} in
     targetenv=prod; echo $targetenv
     source ./vars/setup_${env}.properties;;
   *) echo "Error getting branch name"; exit 1 ;;
+esac
  
 # If the variable target_nifi is empty then the script finish, the one that is assigned into the .properties file
-if [[ -z ${targetnifi ]]
+if [[ -z ${targetnifi} ]]
   then
     echo "target_nifi variable is not configured"
     exit 1
