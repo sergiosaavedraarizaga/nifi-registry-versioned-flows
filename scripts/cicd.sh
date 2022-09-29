@@ -9,8 +9,8 @@ sudo apt-get install unzip
 sudo sh -c "cd /opt; wget https://archive.apache.org/dist/nifi/1.16.3/nifi-toolkit-1.16.3-bin.zip"
 sudo sh -c "cd /opt; unzip nifi-toolkit-1.16.3-bin.zip; chmod -R 755 /opt"
 nifipath="/opt/nifi-toolkit-1.16.3"
-sourcenifi="http://52.208.110.211:8443"
-sourceregistry="http://3.252.41.20:18080" # Lab Registry. Later we will assign this value as a github secret variable
+sourcenifi="http://timeslot-mgt2-dev-alb-1055943266.eu-west-1.elb.amazonaws.com:8443"
+sourceregistry="http://timeslot-mgt2-nifireg-dev-alb-2018853726.eu-west-1.elb.amazonaws.com:18080" # Lab Registry. Later we will assign this value as a github secret variable
 # export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
 export JAVA_HOME="/usr/lib/jvm/java-18-openjdk-amd64"
 
