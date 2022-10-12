@@ -42,7 +42,7 @@ pipeline {
                       #!/usr/bin/bash
                       flow_name=$(eval cat ./flow.json | jq '.[].flow_name')
                       flow_version=$(cat ./flow.json | jq '.[].flow_version')
-                      /home/ubuntu/cicd.sh $flow_name $flow_version qa
+                      /home/ubuntu/cicd.sh $flow_name $flow_version prod
                       ''' 
                       }
                     }  
