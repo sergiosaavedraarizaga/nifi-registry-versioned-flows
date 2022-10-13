@@ -4,11 +4,13 @@ pipeline {
     current_branch = "${env.BRANCH_NAME}"
     }
     stages {
-        stage('Check branch') {
-        
-          steps {
-            error "Wrong branch name"
-          }
+               
+        stage('Checkout repository') {
+            steps {
+                // You can choose to clean workspace before build as follows
+                cleanWs()
+                checkout scm
+            }
         }
         
         stage('Test') {
