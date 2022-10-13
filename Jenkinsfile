@@ -5,16 +5,7 @@ pipeline {
     }
     stages {
         stage('Check branch') {
-          when {
-            
-              anyOf {
-                branch "main"
-                branch "feature/*"
-                branch "release/*"
-                branch "bugfix/*"
-              }
-            
-          }
+        
           steps {
             error "Wrong branch name"
           }
