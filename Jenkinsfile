@@ -7,8 +7,10 @@ pipeline {
         stage('Check branch') {
             when {
                 not {
-                    branch 'main'
-                    branch 'qa'
+                    anyOf {
+                      branch "main"
+                      branch "qa"
+                    }
                 }
             }
             steps {
