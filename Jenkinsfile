@@ -4,7 +4,19 @@ pipeline {
     current_branch = "${env.BRANCH_NAME}"
     }
     stages {
-               
+        stage('Check branch') {
+            when {
+                not {
+                    anyOf {
+                      branch "main"
+                      branch "qa"
+                    }
+                }
+            }
+            steps {
+                error "Wrong branch name"
+            }
+        }
         stage('Checkout repository') {
             steps {
                 // You can choose to clean workspace before build as follows
